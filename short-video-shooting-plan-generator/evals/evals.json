@@ -1,0 +1,23 @@
+{
+  "skill_name": "short-video-shooting-plan-generator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I just got a new product: Niacinamide Brightening Serum. Category is skincare. Build me a TikTok Shop video shooting plan in English with a clear hook, shot-by-shot list, and soft conversion.",
+      "expected_output": "Map category to beauty-skincare and return structured markdown with Video Brief, Hook Options (2), Shot List (6-8 shots with six required columns), Conversion Design (soft CTA), Compliance Notes.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Product: Portable Smoothie Blender. Category: small appliance. Give me a practical 30-45s TikTok Shop script. I want at least one comparison shot if it makes sense.",
+      "expected_output": "Map category to tech-small-appliance, include at least one comparison shot when strategy says comparison_recommended=true, keep 6-8 shots and soft CTA tone.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I need a quick sell-video structure for Cat Feather Teaser. Category: pet toy. Keep it executable and in English.",
+      "expected_output": "Set category_normalized to generic, use fallback generic strategy, keep the same markdown structure, and include Fallback Note: Used generic strategy due to unmatched category.",
+      "files": []
+    }
+  ]
+}

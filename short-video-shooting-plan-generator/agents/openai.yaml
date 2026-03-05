@@ -1,0 +1,4 @@
+interface:
+  display_name: "Short Video Shooting Plan Generator"
+  short_description: "Build executable TikTok Shop shot plans."
+  default_prompt: "Use $short-video-shooting-plan-generator to generate an English TikTok Shop shot-by-shot selling script with 6-8 shots, two hooks, and soft CTA from product name and category."
