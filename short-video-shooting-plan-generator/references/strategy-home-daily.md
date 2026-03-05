@@ -1,54 +1,54 @@
-# Strategy: Home & Daily Use
+# 策略：家居与日用
 
-## Category Intent
+## 类目意图
 
-Show how the product solves small but frequent home frustrations. Prioritize organization, space efficiency, and daily convenience.
+展示产品如何解决高频但细小的居家困扰。优先强调收纳效率、空间利用和日常便利。
 
-## Best Hook Patterns
+## 最佳 Hook 模式
 
-- "I wish I knew this home trick earlier."
-- "This fixed the messiest corner in my room."
-- "Small product, huge difference in daily flow."
+- “这个居家小技巧，我真希望早点知道。”
+- “它把我家最乱的角落整理明白了。”
+- “小东西，但日常动线差别很大。”
 
-## Demo Sequence
+## 演示顺序
 
-1. Show clutter or friction point in a real corner of the home.
-2. Show product placement/setup.
-3. Show immediate functional improvement.
-4. Show second use scenario for versatility.
-5. Show maintenance ease or space saved.
-6. Close with who should copy this setup.
+1. 先展示家中真实凌乱点或使用摩擦点。
+2. 展示产品摆放/安装过程。
+3. 展示即时功能改进。
+4. 展示第二使用场景，体现一物多用。
+5. 展示清洁维护或节省空间细节。
+6. 说明哪些人适合直接照抄。
 
-## Common Objection & Answer
+## 常见异议与回应
 
-| Objection | Answer Pattern |
+| 异议 | 回应模式 |
 |---|---|
-| "Do I really need this?" | "Link it to repeated daily pain and saved effort." |
-| "Will it fit my space?" | "Provide quick size/context cue in frame." |
-| "Will it be hard to maintain?" | "Show wipe/clean/store step in a few seconds." |
+| “我真的需要吗？” | “关联到每天重复出现的痛点和省力价值。” |
+| “我家放得下吗？” | “镜头里给尺寸与空间参照。” |
+| “会不会难维护？” | “几秒内展示擦拭/清洁/收纳动作。” |
 
-## Comparison Rule
+## 对比规则
 
 ```yaml
 comparison_recommended: true
 comparison_when:
-  - before_after_space_or_order_improvement_visible
-  - repeated_daily_friction_can_be_compared
+  - 前后空间或整洁度提升可见
+  - 可比较重复性日常摩擦
 comparison_type:
-  - messy_vs_organized
-  - old_setup_vs_new_setup
+  - 杂乱_vs_有序
+  - 旧布局_vs_新布局
 ```
 
-## Soft CTA Patterns
+## 软性 CTA 模式
 
-- "If your space looks like this, copy this exact setup."
-- "Start with one zone and see how much easier your routine feels."
-- "Save this layout idea for your weekend reset."
+- “如果你家也是这个状态，可以照着这套摆法先试一块区域。”
+- “先从一个角落开始，感受日常流程有没有更顺。”
+- “收藏这套布局思路，周末整理时直接用。”
 
-## Do/Don't
+## 建议 / 避免
 
-| Do | Don't |
+| 建议 | 避免 |
 |---|---|
-| Use realistic home scenes, not showroom-only scenes. | Exaggerate storage capacity without proof. |
-| Give one clear placement tip. | Add too many unrelated products in one video. |
-| Keep language practical and actionable. | Promise life-changing outcomes from a minor tool. |
+| 使用真实家庭场景，而非纯样板间镜头。 | 无证据夸大收纳容量。 |
+| 给出一个明确摆放技巧。 | 一条视频塞太多无关产品。 |
+| 语言保持实用、可执行。 | 把小工具说成“改变人生”。 |

@@ -1,56 +1,56 @@
-# Compliance Guardrails (Baseline)
+# 合规护栏（基础版）
 
-## 1) Objective
+## 1）目标
 
-Keep copy conversion-oriented but safe. Remove high-risk language (absolute, medical, guaranteed outcome), then keep transparent and testable expressions.
+在保证转化能力的同时保持表达安全：移除高风险表述（绝对化、医疗化、保证性承诺），改为透明、可验证、可落地的话术。
 
-## 2) Risk Levels
+## 2）风险等级
 
-- `high`: must replace or remove.
-- `medium`: replace with qualified wording.
-- `low`: keep with caution and context.
+- `high`：必须替换或删除。
+- `medium`：建议替换为更保守、限定条件的表达。
+- `low`：可保留，但要有上下文证据支撑。
 
-## 3) Banned or Restricted Expressions
+## 3）限制/禁用表达
 
-| Risk | Pattern / Example | Replace With |
+| 风险 | 模式 / 示例 | 建议替换 |
 |---|---|---|
-| high | "100% effective", "guaranteed results" | "designed to help", "may support", "many users report" |
-| high | "cures", "treats disease", "medical-grade cure" | "supports comfort", "improves routine experience" |
-| high | "works for everyone", "zero side effects" | "results vary by person", "patch test or first-use check recommended" |
-| medium | "best on market", "number one" | "popular choice", "commonly preferred for X scenario" |
-| medium | "instant transformation" | "visible change may appear quickly in this demo" |
-| medium | "must buy now" | "worth considering if this scenario matches your needs" |
-| low | "amazing", "great" | keep if supported by visible evidence in shot |
+| high | “100%有效”“保证见效”“guaranteed results” | “可能有帮助”“可支持日常场景”“部分用户反馈…” |
+| high | “治愈”“治疗疾病”“medical-grade cure” | “提升使用体验”“帮助改善流程感受” |
+| high | “所有人都适用”“零副作用”“works for everyone” | “因人而异”“建议先做局部测试/首次小范围试用” |
+| medium | “全网第一”“行业第一”“best on market” | “常见选择”“在某类场景下更常被偏好” |
+| medium | “立刻逆天改变”“instant transformation” | “在本次演示中可见变化，实际体验因人而异” |
+| medium | “必须马上买”“must buy now” | “如果场景匹配，值得纳入备选/先试一次” |
+| low | “很好用”“amazing”“great” | 如有真实演示证据可保留，否则弱化为中性描述 |
 
-## 4) Auto-Replacement Priority
+## 4）自动替换优先级
 
-1. Replace `high` risk phrases first.
-2. Replace `medium` risk phrases second.
-3. Keep `low` only if adjacent evidence exists in the script.
-4. If no safe replacement is available, delete the risky phrase.
+1. 先处理 `high` 风险短语。
+2. 再处理 `medium` 风险短语。
+3. `low` 风险仅在邻近有证据时保留。
+4. 若无法安全替换，则直接删除该高风险表达。
 
-## 5) Soft CTA Policy
+## 5）软性 CTA 规则
 
-Use suggestion-based conversion language:
+使用建议式、低压力引导：
 
-- "If this fits your routine, it may be worth trying."
-- "Start with one scenario and compare your result."
-- "Save this and test when you need it."
+- “如果和你的日常场景匹配，可以考虑先试一次。”
+- “先在一个真实场景测试，再对比结果。”
+- “先收藏这条流程，等需要时照着做。”
 
-Avoid pressure-only CTA:
+避免高压催促：
 
-- "Buy now or miss out"
-- "Last chance for everyone"
-- "You must get this today"
+- “现在不买就亏了”
+- “最后机会人人必买”
+- “今天必须下单”
 
-## 6) Compliance Notes Requirement
+## 6）合规说明模块要求
 
-Always output a `Compliance Notes` section with:
+输出中必须包含 `合规说明`，并给出：
 
-- `Replaced Terms`: list of risky terms replaced or removed.
-- `Risk Reminders`: concise reminders (for example, "results vary", "avoid medical claims").
+- `已替换高风险表达`：列出替换或删除的词句。
+- `风险提醒`：给出简洁提醒（如“体验因人而异”“避免医疗承诺”）。
 
-If no replacements were needed, write:
+如果本次无需替换，写：
 
-- `Replaced Terms: none`
-- `Risk Reminders: no high-risk claims detected`
+- `已替换高风险表达：无`
+- `风险提醒：未检测到高风险承诺表达`

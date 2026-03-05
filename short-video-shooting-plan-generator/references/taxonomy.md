@@ -1,8 +1,8 @@
-# Category Taxonomy and Normalization
+# 类目分类与归一化规则
 
-## 1) Standard Categories
+## 1）标准类目
 
-Use the following canonical category values only:
+仅使用以下标准类目值：
 
 - `beauty-skincare`
 - `personal-care-cleaning`
@@ -11,20 +11,20 @@ Use the following canonical category values only:
 - `tech-small-appliance`
 - `generic`
 
-## 2) Normalization Pipeline
+## 2）归一化流程
 
-1. Lowercase `category_raw`.
-2. Remove punctuation and extra spaces.
-3. Match aliases by whole word / phrase boundary first.
-4. If multiple candidates match, pick the first high-confidence hit by priority.
-5. If no candidate matches, return `generic`.
+1. 将 `category_raw` 转为小写。
+2. 去除标点和多余空格。
+3. 先按“完整词/短语边界”匹配同义词。
+4. 如果匹配到多个候选，按优先级选择最高置信度类目。
+5. 如果都不匹配，返回 `generic`。
 
-Do not do naive substring matching inside another word.  
-Example: do not match `tea` from `teaser`.
+不要做粗糙的子串匹配（避免误匹配）。  
+示例：不要把 `teaser` 误识别为 `tea`。
 
-If the user message contains an explicit category field (for example `Category: ...`), normalize only that extracted value rather than the whole prompt.
+如果用户消息里有明确类目字段（例如 `Category: ...`），仅对该字段做归一化，不要对整段提示词做全量猜测。
 
-## 3) Priority Rule (High to Low)
+## 3）优先级规则（高到低）
 
 1. `beauty-skincare`
 2. `personal-care-cleaning`
@@ -32,9 +32,9 @@ If the user message contains an explicit category field (for example `Category: 
 4. `food-beverage`
 5. `tech-small-appliance`
 
-Use this order only when multiple categories are triggered at the same confidence.
+仅在“同等置信度命中多个类目”时使用此优先级。
 
-## 4) Synonym Mapping
+## 4）同义词映射
 
 ### beauty-skincare
 
@@ -127,24 +127,24 @@ Use this order only when multiple categories are triggered at the same confidenc
 - 数码
 - 电子产品
 
-## 5) Conflict Resolution
+## 5）冲突消解
 
-- If `category_raw` contains both beauty and cleaning words:
-  - If skincare or makeup tokens appear, choose `beauty-skincare`.
-  - Else choose `personal-care-cleaning`.
-- If food terms and appliance terms both appear:
-  - If terms include cooking equipment (air fryer, blender, kettle), choose `tech-small-appliance`.
-  - If terms include edible item names, choose `food-beverage`.
-- If confidence is still unclear, choose `generic` and add fallback note.
+- 如果 `category_raw` 同时出现美妆和清洁相关词：
+  - 若出现护肤/彩妆词，优先选 `beauty-skincare`；
+  - 否则选 `personal-care-cleaning`。
+- 如果同时出现食品词和小家电词：
+  - 若出现烹饪设备词（如 air fryer、blender、kettle），选 `tech-small-appliance`；
+  - 若出现可食用单品词，选 `food-beverage`。
+- 若置信度依旧不清晰，选 `generic`，并在结果中附带兜底说明。
 
-## 6) Output Fields
+## 6）输出字段
 
-After normalization, produce:
+归一化后需要产出：
 
 - `category_normalized`
 - `strategy_file`
 
-`strategy_file` map:
+`strategy_file` 映射：
 
 - `beauty-skincare` -> `references/strategy-beauty-skincare.md`
 - `personal-care-cleaning` -> `references/strategy-personal-care-cleaning.md`

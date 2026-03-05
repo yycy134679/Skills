@@ -1,54 +1,54 @@
-# Strategy: Personal Care & Cleaning
+# 策略：个护与清洁
 
-## Category Intent
+## 类目意图
 
-Prove practical effectiveness in everyday hygiene or cleaning tasks. Focus on convenience, comfort, and visible result in one use.
+在日常清洁/护理任务中证明“好用且省事”。突出便捷性、舒适度和单次可见结果。
 
-## Best Hook Patterns
+## 最佳 Hook 模式
 
-- "This is how I cut my cleaning time in half."
-- "If your bathroom still smells after cleaning, watch this."
-- "One small swap that made my morning routine easier."
+- “我把清洁时间缩短一半，靠的是这个方法。”
+- “你明明清理了但还是有异味？先看这个。”
+- “一个小替换，让我早晨流程轻松很多。”
 
-## Demo Sequence
+## 演示顺序
 
-1. Open with a common messy or inconvenient scene.
-2. Show product setup in one simple step.
-3. Show direct use on target area.
-4. Show visible result and time saved.
-5. Add one user-fit cue (small space, busy schedule, sensitive nose).
-6. End with low-friction next action.
+1. 以常见脏乱或不便场景开场。
+2. 一步展示产品准备就绪。
+3. 直接在目标区域使用。
+4. 展示可见结果与节省时间。
+5. 加一个适配人群提示（小户型、忙碌作息、气味敏感等）。
+6. 用低摩擦下一步动作收尾。
 
-## Common Objection & Answer
+## 常见异议与回应
 
-| Objection | Answer Pattern |
+| 异议 | 回应模式 |
 |---|---|
-| "Does it actually clean better?" | "Show side-by-side area difference with equal conditions." |
-| "Is the scent too strong?" | "Describe scent profile in practical language and scene fit." |
-| "Will it damage surfaces?" | "Mention suitable surfaces and advise spot testing first." |
+| “真的更干净吗？” | “在同等条件下展示对比区域差异。” |
+| “味道会不会太冲？” | “用日常语描述气味层次和适用场景。” |
+| “会不会伤表面？” | “说明适用材质，并建议先小范围测试。” |
 
-## Comparison Rule
+## 对比规则
 
 ```yaml
 comparison_recommended: true
 comparison_when:
-  - visible_cleaning_difference_available
-  - time_saved_can_be_measured
+  - 可见清洁差异存在
+  - 可测量节省时间
 comparison_type:
-  - before_vs_after_same_surface
-  - manual_method_vs_product_method
+  - 同一表面_前后对比
+  - 手工方式_vs_产品方式
 ```
 
-## Soft CTA Patterns
+## 软性 CTA 模式
 
-- "If you want an easier daily cleanup, this is a practical pick."
-- "Try it on one high-traffic area first and compare your own result."
-- "Save this method for your next cleaning day."
+- “如果你想把日常清洁做得更省力，这个方案值得先试。”
+- “先在一个高频区域试一次，再对比你自己的结果。”
+- “先收藏这套方法，下一次清洁日直接照做。”
 
-## Do/Don't
+## 建议 / 避免
 
-| Do | Don't |
+| 建议 | 避免 |
 |---|---|
-| Show one realistic use case end-to-end. | Over-edit to fake cleaning outcomes. |
-| Mention where it works best. | Claim it works on every material with zero risk. |
-| Emphasize convenience and routine fit. | Use fear-based pressure to force purchase. |
+| 从头到尾展示一个真实使用场景。 | 过度剪辑制造“假清洁效果”。 |
+| 说明最适用的材质/区域。 | 宣称“所有材质都零风险适用”。 |
+| 强调省事和流程适配。 | 用恐惧式话术逼单。 |

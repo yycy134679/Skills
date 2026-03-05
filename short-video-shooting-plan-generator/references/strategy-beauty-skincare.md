@@ -1,54 +1,54 @@
-# Strategy: Beauty & Skincare
+# 策略：美妆与护肤
 
-## Category Intent
+## 类目意图
 
-Demonstrate visible texture, finish, and routine-fit value fast. Build trust through realistic use scenes and avoid overclaims.
+快速展示可见质地、肤感与流程适配价值。通过真实使用场景建立信任，避免夸大承诺。
 
-## Best Hook Patterns
+## 最佳 Hook 模式
 
-- "If your skin looks dull by noon, try this 10-second prep trick."
-- "I tested this for 7 days, here is what changed first."
-- "Not another heavy cream. Watch this texture on real skin."
+- “如果你到中午就容易暗沉，先看这个 10 秒妆前小步骤。”
+- “我连续测了 7 天，最先变化的是这个细节。”
+- “不是又一款厚重面霜，看看它在真实皮肤上的质地。”
 
-## Demo Sequence
+## 演示顺序
 
-1. Show pain point on face/hand close-up.
-2. Show texture and spreadability in macro shot.
-3. Show absorption or finish in side light.
-4. Show routine context (morning makeup base or night repair).
-5. Show fit-for-user cue (oily skin, dry skin, sensitive preference).
-6. Close with low-pressure recommendation.
+1. 用面部/手部近景先呈现痛点。
+2. 用微距展示质地和延展性。
+3. 用侧光展示吸收后状态或妆效。
+4. 给出流程场景（晨间妆前/夜间修护）。
+5. 给出适配人群提示（油皮、干皮、敏感偏好等）。
+6. 以低压力建议收尾。
 
-## Common Objection & Answer
+## 常见异议与回应
 
-| Objection | Answer Pattern |
+| 异议 | 回应模式 |
 |---|---|
-| "Will it feel sticky?" | "Show fast absorption on camera and mention finish type (dewy/matte)." |
-| "Will it break me out?" | "Avoid medical claims; mention patch test and ingredient transparency." |
-| "Is it worth the price?" | "Translate into usage-per-day value and time saved in routine." |
+| “会不会很黏？” | “镜头里展示快速吸收，并说明成膜观感（水润/清爽）。” |
+| “会不会闷痘？” | “避免医疗承诺；建议先做局部测试，并强调成分透明。” |
+| “值不值这个价？” | “换算成单次使用价值与流程省时价值。” |
 
-## Comparison Rule
+## 对比规则
 
 ```yaml
 comparison_recommended: true
 comparison_when:
-  - texture_or_finish_difference_visible
-  - before_after_can_be_shown_without_fake_claim
+  - 质地或妆效差异可被清晰拍到
+  - 可在不造假前提下呈现前后差异
 comparison_type:
-  - this_product_vs_previous_routine
-  - this_product_vs_common_pain_point
+  - 本品_vs_旧流程
+  - 本品_vs_常见痛点方案
 ```
 
-## Soft CTA Patterns
+## 软性 CTA 模式
 
-- "If your skin type is similar to mine, this is worth trying once."
-- "Start with the mini size and see how your skin feels this week."
-- "Save this routine order and test it tonight."
+- “如果你的肤质和我接近，这款可以先试一次。”
+- “可以先从小规格开始，这周感受一下皮肤状态。”
+- “先收藏这套使用顺序，今晚照着试试。”
 
-## Do/Don't
+## 建议 / 避免
 
-| Do | Don't |
+| 建议 | 避免 |
 |---|---|
-| Show real skin texture under normal light. | Claim instant cure or permanent results. |
-| Explain who this product is for and not for. | Use absolute words like "100% safe for everyone." |
-| Use routine-based value language. | Promise medical treatment outcomes. |
+| 在自然光下展示真实皮肤质感。 | 宣称立刻治愈或永久见效。 |
+| 说清楚适合谁、不适合谁。 | 使用“所有人都 100% 安全”这类绝对化表达。 |
+| 用“流程价值”讲清购买理由。 | 承诺医疗治疗结果。 |

@@ -1,52 +1,52 @@
-# Strategy: Food & Beverage
+# 策略：食品与饮品
 
-## Category Intent
+## 类目意图
 
-Stimulate appetite, trust, and purchase intent by highlighting taste cues, ingredient clarity, and consumption context.
+通过口味线索、成分清晰度与食用场景，激发食欲、信任与购买意愿。
 
-## Best Hook Patterns
+## 最佳 Hook 模式
 
-- "This is what I reach for at the 3pm energy drop."
-- "I did not expect this flavor combo to work this well."
-- "If you need a quick no-fuss snack, start here."
+- “下午 3 点没精神时，我最常拿的就是这个。”
+- “这个口味组合我本来不看好，结果意外很搭。”
+- “想要省事又不踩雷的加餐，可以先从这个开始。”
 
-## Demo Sequence
+## 演示顺序
 
-1. Show product and flavor/ingredient cue immediately.
-2. Open package or prep process in one clean motion.
-3. Show first bite/sip reaction naturally.
-4. Show texture detail or mixability close-up.
-5. Show one practical use moment (office, gym, commute).
-6. Close with gentle recommendation and fit cue.
+1. 第一秒展示产品与核心口味/配料线索。
+2. 一镜完成开包或冲调准备动作。
+3. 自然呈现第一口/第一口饮用反应。
+4. 近景展示质地细节或冲调状态。
+5. 展示一个真实使用场景（办公室/健身房/通勤）。
+6. 用温和建议和适配人群收尾。
 
-## Common Objection & Answer
+## 常见异议与回应
 
-| Objection | Answer Pattern |
+| 异议 | 回应模式 |
 |---|---|
-| "Is it too sweet?" | "Describe flavor profile and compare to familiar references." |
-| "Is it convenient?" | "Show carry, prep time, and cleanup in real context." |
-| "Is it worth it?" | "Explain occasion-fit and frequency-based value." |
+| “会不会太甜？” | “描述风味轮廓，并用熟悉口味做参照。” |
+| “方便吗？” | “展示携带、准备时间和清洁负担。” |
+| “值不值？” | “说明适用场景与使用频率带来的价值。” |
 
-## Comparison Rule
+## 对比规则
 
 ```yaml
 comparison_recommended: false
 comparison_when:
-  - use_only_if_flavor_or_convenience_difference_is_clear
+  - 仅在口味或便捷性差异足够清晰时使用
 comparison_type:
-  - optional_this_product_vs_common_alternative
+  - 可选_本品_vs_常见替代
 ```
 
-## Soft CTA Patterns
+## 软性 CTA 模式
 
-- "If this flavor profile sounds like you, try one pack first."
-- "Keep one in your bag and see if it fits your routine."
-- "Save this for your next grocery list."
+- “如果这个风味刚好是你喜欢的，可以先试一包。”
+- “包里先放一份，看看是否适配你的日常节奏。”
+- “先收藏到下次采购清单里。”
 
-## Do/Don't
+## 建议 / 避免
 
-| Do | Don't |
+| 建议 | 避免 |
 |---|---|
-| Show real tasting context and honest reaction. | Claim health cures or medical benefits. |
-| Describe flavor in concrete terms. | Use fake "everyone will love it" statements. |
-| Keep claims to observable facts. | Promise guaranteed body or weight outcomes. |
+| 展示真实试吃/试饮场景和诚实反应。 | 宣称治病或医疗功效。 |
+| 用具体词描述口味。 | 使用“所有人都会爱”这类空泛绝对表达。 |
+| 只说可观察事实。 | 承诺身材或体重必然变化。 |

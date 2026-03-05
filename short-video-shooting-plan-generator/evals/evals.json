@@ -3,21 +3,43 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "I just got a new product: Niacinamide Brightening Serum. Category is skincare. Build me a TikTok Shop video shooting plan in English with a clear hook, shot-by-shot list, and soft conversion.",
-      "expected_output": "Map category to beauty-skincare and return structured markdown with Video Brief, Hook Options (2), Shot List (6-8 shots with six required columns), Conversion Design (soft CTA), Compliance Notes.",
-      "files": []
+      "prompt": "我有一个新品：烟酰胺焕亮精华，类目是 skincare。请给我一版 TikTok Shop 短视频拍摄方案：总时长 30-45 秒，分镜清晰，可直接拍，语气要实用、可信、软性转化。",
+      "expected_output": "应归一化到 beauty-skincare，并输出中文结构化方案，包含一句话总结、2 个 Hook、6-8 镜头、软性转化与合规说明；口播列为中文在上英文在下。",
+      "files": [],
+      "expectations": [
+        "输出包含‘一句话总结’模块，并位于开头",
+        "输出包含‘Hook 选项（2个）’且恰好 2 条",
+        "分镜清单镜头数在 6-8 之间",
+        "分镜清单包含七要素列，且口播列是双语两行（中文在上，英文在下）",
+        "除口播英文对照外，其余模块和标题为中文",
+        "输出包含‘转化设计（软性引导）’与‘合规说明’"
+      ]
     },
     {
       "id": 2,
-      "prompt": "Product: Portable Smoothie Blender. Category: small appliance. Give me a practical 30-45s TikTok Shop script. I want at least one comparison shot if it makes sense.",
-      "expected_output": "Map category to tech-small-appliance, include at least one comparison shot when strategy says comparison_recommended=true, keep 6-8 shots and soft CTA tone.",
-      "files": []
+      "prompt": "产品：便携式果昔搅拌杯；类目：small appliance。给我一版 30-45 秒 TikTok Shop 带货拍摄方案。若策略建议可比较，请加入至少一个对比镜头。",
+      "expected_output": "应归一化到 tech-small-appliance；当 comparison_recommended=true 时至少有一个对比镜头；结构完整且全中文（口播双语两行）。",
+      "files": [],
+      "expectations": [
+        "输出结构完整：一句话总结、视频简报、Hook、分镜、转化设计、合规说明",
+        "分镜清单镜头数在 6-8 之间",
+        "若包含对比镜头，其文案应体现比较逻辑且不夸大承诺",
+        "口播列每镜头均为双语两行",
+        "CTA 为软性引导而非强逼下单"
+      ]
     },
     {
       "id": 3,
-      "prompt": "I need a quick sell-video structure for Cat Feather Teaser. Category: pet toy. Keep it executable and in English.",
-      "expected_output": "Set category_normalized to generic, use fallback generic strategy, keep the same markdown structure, and include Fallback Note: Used generic strategy due to unmatched category.",
-      "files": []
+      "prompt": "我要做‘猫咪羽毛逗猫棒’的短视频带货脚本，类目写的是 pet toy。请给一版可直接开拍的方案。",
+      "expected_output": "应命中 generic 兜底策略，并在保持同样结构的同时输出兜底说明；全中文输出，口播双语两行。",
+      "files": [],
+      "expectations": [
+        "输出包含‘兜底说明’并明确使用通用兜底策略",
+        "其余核心结构模块完整",
+        "镜头数在 6-8 之间",
+        "口播列为双语两行",
+        "除口播英文对照外，其余内容为中文"
+      ]
     }
   ]
 }

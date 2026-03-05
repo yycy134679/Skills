@@ -1,4 +1,4 @@
 interface:
   display_name: "Short Video Shooting Plan Generator"
-  short_description: "Build executable TikTok Shop shot plans."
-  default_prompt: "Use $short-video-shooting-plan-generator to generate an English TikTok Shop shot-by-shot selling script with 6-8 shots, two hooks, and soft CTA from product name and category."
+  short_description: "生成可直接开拍的 TikTok Shop 中文分镜方案。"
+  default_prompt: "使用 $short-video-shooting-plan-generator：基于商品名和类目生成 TikTok Shop 带货短视频拍摄方案，结果需全中文，口播文案按中文在上/英文在下双语两行输出，包含一句话总结、6-8 个镜头、2 个 Hook 和软性转化设计。"

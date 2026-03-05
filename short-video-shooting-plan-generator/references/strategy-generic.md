@@ -1,51 +1,51 @@
-# Strategy: Generic Fallback
+# 策略：通用兜底
 
-## Category Intent
+## 类目意图
 
-Provide a conservative, executable script when category mapping is unclear. Keep claims modest and demonstrations universally applicable.
+当类目映射不明确时，提供保守且可执行的脚本。表达要克制，演示要通用。
 
-## Best Hook Patterns
+## 最佳 Hook 模式
 
-- "If you are comparing options in this category, start with this quick test."
-- "Here is a simple way to see if this product fits your routine."
-- "No hype, just a practical demo in 30 seconds."
+- “如果你在这个类目里犹豫选哪款，先看这个快速测试。”
+- “用一个简单方法，先判断它是否适合你的日常。”
+- “不吹不黑，30 秒看完实用演示。”
 
-## Demo Sequence
+## 演示顺序
 
-1. Introduce the product and one common use context.
-2. Show setup or preparation clearly.
-3. Show a direct usage moment.
-4. Show observable result.
-5. Address one likely objection conservatively.
-6. End with soft recommendation.
+1. 介绍产品和一个常见使用场景。
+2. 清晰展示准备/安装步骤。
+3. 展示一次直接使用过程。
+4. 展示可观察结果。
+5. 保守回应一个高频疑问。
+6. 用软性建议收尾。
 
-## Common Objection & Answer
+## 常见异议与回应
 
-| Objection | Answer Pattern |
+| 异议 | 回应模式 |
 |---|---|
-| "Will this work for me?" | "State suitable scenarios and suggest small-scale trial." |
-| "Is it worth trying?" | "Highlight practical use frequency and ease, avoid hard claims." |
+| “这对我有用吗？” | “说明适用场景，并建议小范围试用。” |
+| “值得尝试吗？” | “强调使用频率与上手难度，避免强承诺。” |
 
-## Comparison Rule
+## 对比规则
 
 ```yaml
 comparison_recommended: false
 comparison_when:
-  - only_if_difference_is_observable_and_honest
+  - 仅在差异可被真实观察时使用
 comparison_type:
-  - optional_baseline_comparison
+  - 可选_基线对比
 ```
 
-## Soft CTA Patterns
+## 软性 CTA 模式
 
-- "If your needs are similar, this is worth a first try."
-- "Test it in one real scenario before deciding."
-- "Save this checklist and compare with your current option."
+- “如果你的需求和这个场景相似，可以先试一次。”
+- “先在一个真实场景里测试，再决定。”
+- “收藏这份检查清单，和你现在的方案对比。”
 
-## Do/Don't
+## 建议 / 避免
 
-| Do | Don't |
+| 建议 | 避免 |
 |---|---|
-| Keep wording practical and evidence-based. | Make category-specific promises without evidence. |
-| Mention that a generic strategy is being used. | Pretend high-confidence category expertise when unmatched. |
-| Encourage small trial actions. | Push high-pressure closing language. |
+| 语言保持务实、可证据化。 | 在无证据情况下做类目特定承诺。 |
+| 明确说明当前使用的是兜底策略。 | 类目不匹配时假装高置信专业判断。 |
+| 引导小步试错动作。 | 用高压成交话术收尾。 |

@@ -1,54 +1,54 @@
-# Strategy: Tech & Small Appliance
+# 策略：科技与小家电
 
-## Category Intent
+## 类目意图
 
-Reduce purchase hesitation by proving ease of use, real utility, and scenario fit. Prioritize demo clarity over technical jargon.
+通过“好上手 + 真有用 + 场景匹配”降低购买犹豫。优先演示清晰度，而不是堆参数术语。
 
-## Best Hook Patterns
+## 最佳 Hook 模式
 
-- "I use this every day, and here is why."
-- "This solved one annoying task in under a minute."
-- "Before you buy another gadget, watch this first."
+- “我几乎每天用它，原因就这几个。”
+- “这个烦人步骤，它不到一分钟就解决了。”
+- “买下一个小电器前，先看这个实测。”
 
-## Demo Sequence
+## 演示顺序
 
-1. Show pain point task and current friction.
-2. Show unbox or quick setup in one pass.
-3. Show first functional output clearly.
-4. Show second scenario to prove repeat utility.
-5. Show portability/noise/cleanup or charging detail.
-6. Close with who it is best for.
+1. 先展示当前痛点任务与摩擦。
+2. 一镜展示开箱或快速安装。
+3. 清楚展示第一次功能输出。
+4. 再展示第二场景，证明可重复使用价值。
+5. 补充便携/噪音/清洁或充电细节。
+6. 收尾说明适合哪些人。
 
-## Common Objection & Answer
+## 常见异议与回应
 
-| Objection | Answer Pattern |
+| 异议 | 回应模式 |
 |---|---|
-| "Is it hard to use?" | "Show setup-to-result in a single continuous sequence." |
-| "Will I actually use it?" | "Tie to one repeated daily or weekly task." |
-| "Is quality reliable?" | "Highlight build details and practical handling cues." |
+| “难不难用？” | “用一段连续镜头展示从准备到结果。” |
+| “买了会不会吃灰？” | “绑定一个每周重复发生的任务场景。” |
+| “质量靠谱吗？” | “展示做工细节和实操手感线索。” |
 
-## Comparison Rule
+## 对比规则
 
 ```yaml
 comparison_recommended: true
 comparison_when:
-  - speed_or_result_difference_is_visible
-  - manual_method_baseline_is_available
+  - 速度或结果差异可见
+  - 可提供手工方式基线
 comparison_type:
-  - manual_vs_device
-  - old_device_vs_new_device
+  - 手工方式_vs_设备方式
+  - 旧设备_vs_新设备
 ```
 
-## Soft CTA Patterns
+## 软性 CTA 模式
 
-- "If this is a task you repeat often, this could be a useful upgrade."
-- "Try the starter use case first before exploring advanced features."
-- "Save this setup flow so you can copy it quickly."
+- “如果这是你高频重复的任务，它可能是个实用升级。”
+- “先从最基础场景开始，再决定要不要探索进阶用法。”
+- “先收藏这套安装流程，回头可以快速复现。”
 
-## Do/Don't
+## 建议 / 避免
 
-| Do | Don't |
+| 建议 | 避免 |
 |---|---|
-| Show one complete task from start to finish. | Overfocus on specs without showing outcomes. |
-| Mention practical fit (space, noise, portability). | Claim zero failure or perfect durability. |
-| Keep explanation simple and visual. | Use urgent pressure language as primary close. |
+| 从开始到完成展示一个完整任务。 | 只讲参数不展示结果。 |
+| 说明实际适配条件（空间、噪音、便携）。 | 宣称零故障或永久耐用。 |
+| 解释尽量简洁、可视化。 | 把紧迫逼单当主要收尾方式。 |
