@@ -210,6 +210,45 @@
         "口播列为双语两行",
         "避免保证所有航司都能登机、绝对防水防盗等表达"
       ]
+    },
+    {
+      "id": 17,
+      "prompt": "产品：烟酰胺焕亮精华；类目：skincare。请给我一版 TikTok Shop 带货拍摄脚本，并在结果最后默认附上可直接用于 Seedance 的视频生成提示词。我这里只有商品名，没有商品图。",
+      "expected_output": "应归一化到 beauty-skincare；除完整达人脚本外，还应在结果最后输出 1 条 Seedance 视频生成提示词。即使没有商品图，也不能省略该模块。",
+      "files": [],
+      "expectations": [
+        "输出包含‘Seedance 视频生成提示词’模块，且位于结果最后",
+        "Seedance 模块内容为 1 条完整 prompt，而不是第二份表格或说明文",
+        "Seedance prompt 包含 [类型]、[概述]、[动作与旁白]，并覆盖 Shot 1 到 Shot 7",
+        "Seedance prompt 固定为 15 秒、7 个 Shot、竖屏 9:16",
+        "无商品图时不索要图片，也不出现‘无法保证外观一致性’之类提醒"
+      ]
+    },
+    {
+      "id": 18,
+      "prompt": "产品：磁吸无线充电宝；类目：phone accessory。请输出完整的 TikTok Shop 带货脚本，并默认附带 Seedance 视频生成提示词，整体语气更像真实用户分享。",
+      "expected_output": "应归一化到 consumer-electronics；除达人脚本外，还应输出 1 条符合电子数码品类规则的 Seedance 视频生成提示词。",
+      "files": [],
+      "expectations": [
+        "输出包含最终的‘Seedance 视频生成提示词’模块",
+        "Seedance prompt 使用单段连续英文旁白，而不是沿用达人脚本逐镜头双语口播",
+        "Seedance prompt 避免充电、插拔数据线等电子数码禁用动作",
+        "Seedance prompt 不应退化成 Markdown 分镜表格",
+        "整体语气更像真实用户分享而非参数测评腔"
+      ]
+    },
+    {
+      "id": 19,
+      "prompt": "产品：创意磁悬浮装饰摆件；类目：misc。请给我一版可直接开拍的 TikTok Shop 带货方案，并在最后附上可直接复制给 Seedance 的视频生成提示词。",
+      "expected_output": "无法高置信命中类目时，应走 generic 兜底策略；除兜底说明外，还应在整份结果最后输出 1 条 Seedance 视频生成提示词。",
+      "files": [],
+      "expectations": [
+        "输出包含‘兜底说明’，并明确使用通用兜底策略",
+        "‘Seedance 视频生成提示词’模块仍然存在，且位于整份结果最后",
+        "Seedance prompt 为 15 秒、7 个 Shot、竖屏 9:16 的完整提示词",
+        "无商品图或 generic 场景下也不省略 Seedance 模块",
+        "Seedance 模块中不出现索图说明或解释性免责声明"
+      ]
     }
   ]
 }
