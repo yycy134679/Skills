@@ -4,232 +4,218 @@
 
 仅使用以下一级类目值：
 
-- `beauty-skincare`
-- `fashion-accessories`
-- `jewelry-watches`
-- `personal-care-cleaning`
-- `home-daily`
-- `home-appliance`
-- `consumer-electronics`
-- `sports-outdoor`
-- `automotive-accessories`
-- `office-school`
-- `toys-games`
-- `food-beverage`
-- `health-wellness`
-- `mom-baby`
-- `pet`
-- `holiday-party`
-- `tools-hardware`
-- `luggage-travel`
-- `generic`
+| 标准值 | 中文类目 |
+|---|---|
+| `office-stationery` | 办公文具 |
+| `pet-supplies` | 宠物用品 |
+| `kitchenware` | 厨房用品 |
+| `computers` | 电脑 |
+| `home-textiles` | 家纺布艺 |
+| `home-decor-festive` | 家居装饰 & 节庆装饰 |
+| `home-appliances` | 家用电器 |
+| `home-improvement-materials` | 家装建材 |
+| `household-daily` | 居家日用 |
+| `beauty-personal-care` | 美妆个护 |
+| `mother-baby` | 母婴用品 |
+| `automotive-motorcycle` | 汽车与摩托车 |
+| `phones-digital` | 手机与数码 |
+| `toys-hobbies` | 玩具与爱好 |
+| `tools-hardware` | 五金工具 |
+| `sports-outdoor` | 运动和户外 |
+| `generic` | 通用兜底 |
 
 ## 2）归一化流程
 
 1. 将 `category_raw` 转为小写。
-2. 去除标点和多余空格。
-3. 先按“完整词/短语边界”匹配同义词。
-4. 如果匹配到多个候选，按优先级选择最高置信度类目。
-5. 如果都不匹配，返回 `generic`。
+2. 去除标点、`&` 两侧多余空格和重复空白。
+3. 优先读取显式类目字段，不要对整段用户提示词做粗糙全量猜测。
+4. 先按“完整词/短语边界”匹配同义词，再看歧义规则。
+5. 如果命中多个候选，仅在同等置信度时使用优先级规则。
+6. 若无法稳定命中，返回 `generic`。
 
-不要做粗糙的子串匹配（避免误匹配）。  
-示例：不要把 `teaser` 误识别为 `tea`。
-
-如果用户消息里有明确类目字段（例如 `Category: ...`），仅对该字段做归一化，不要对整段提示词做全量猜测。
+不要做粗糙子串匹配。  
+示例：不要把 `case` 误识别成 `showcase`，也不要把 `pad` 误识别成任意平板配件。
 
 ## 3）优先级规则（高到低）
 
-1. `beauty-skincare`
-2. `fashion-accessories`
-3. `jewelry-watches`
-4. `mom-baby`
-5. `personal-care-cleaning`
-6. `home-appliance`
-7. `consumer-electronics`
-8. `sports-outdoor`
-9. `home-daily`
-10. `office-school`
-11. `food-beverage`
-12. `health-wellness`
-13. `pet`
-14. `toys-games`
-15. `automotive-accessories`
-16. `tools-hardware`
-17. `luggage-travel`
-18. `holiday-party`
+1. `beauty-personal-care`
+2. `mother-baby`
+3. `pet-supplies`
+4. `home-appliances`
+5. `phones-digital`
+6. `computers`
+7. `sports-outdoor`
+8. `automotive-motorcycle`
+9. `office-stationery`
+10. `toys-hobbies`
+11. `kitchenware`
+12. `home-textiles`
+13. `home-decor-festive`
+14. `home-improvement-materials`
+15. `tools-hardware`
+16. `household-daily`
 
-仅在“同等置信度命中多个类目”时使用此优先级。
+仅在“同等置信度命中多个类目”时使用该优先级。
 
 ## 4）同义词映射
 
-### beauty-skincare
+### office-stationery
 
-- skincare
-- skin care
-- beauty
-- beauty product
-- cosmetic
-- cosmetics
-- serum
-- essence
-- toner
-- cream
-- moisturizer
-- sunscreen
-- makeup
-- lip care
-- facial care
-- cleanser
-- foundation
-- blush
-- lipstick
-- 护肤
-- 美妆
-- 化妆品
-- 彩妆
-- 精华
-- 面霜
-- 防晒
+- office supplies
+- office supply
+- stationery
+- school supplies
+- notebook
+- planner
+- binder
+- folder
+- pen
+- pencil
+- highlighter
+- desk organizer
+- 文具
+- 办公文具
+- 办公用品
+- 学习用品
+- 笔记本
+- 笔袋
+- 便签
+- 文件夹
 
-### fashion-accessories
+### pet-supplies
 
-- fashion
-- apparel
-- clothing
-- clothes
-- outfit
-- womenswear
-- menswear
-- dress
-- top
-- shirt
-- pants
-- jeans
-- skirt
-- activewear
-- hoodie
-- sweater
-- jacket
-- coat
-- shapewear
-- underwear
-- bra
-- shoe
-- shoes
-- sneakers
-- sandals
-- boots
-- bag
-- handbag
-- tote
-- wallet
-- sunglasses
-- belt
-- 服饰
-- 女装
-- 男装
-- 穿搭
-- 鞋靴
-- 箱包
-- 配饰
+- pet
+- pet supplies
+- cat supplies
+- dog supplies
+- pet accessory
+- pet feeder
+- pet toy
+- litter box
+- scratcher
+- leash
+- harness
+- pet bed
+- 宠物
+- 宠物用品
+- 猫用品
+- 狗用品
+- 宠物玩具
+- 猫砂盆
+- 饮水机
+- 牵引绳
 
-### jewelry-watches
+### kitchenware
 
-- jewelry
-- jewellery
-- ring
-- rings
-- necklace
-- necklaces
-- earrings
-- bracelet
-- bracelets
-- pendant
-- anklet
-- brooch
-- watch
-- watches
-- quartz watch
-- fashion watch
-- accessory jewelry
-- 珠宝
-- 首饰
-- 饰品
-- 戒指
-- 项链
-- 耳环
-- 手链
-- 手表
-
-### personal-care-cleaning
-
-- personal care
-- body care
-- hygiene
-- oral care
-- toothpaste
-- deodorant
-- shower gel
-- shampoo
-- conditioner
-- soap
-- body wash
-- hair care
-- razor
-- cleansing
-- cleaning
-- laundry
-- disinfect
-- tissue
-- paper towel
-- wipes
-- 个护
-- 清洁
-- 洗护
-- 口腔护理
-- 家清
-- 纸品
-
-### home-daily
-
-- home
-- household
-- household item
-- houseware
 - kitchenware
-- storage
-- organizer
-- bedding
-- home tool
-- daily use
-- decor
 - cookware
+- bakeware
 - tableware
-- pillow
-- blanket
-- towel
-- hanger
-- container
-- 家居
-- 日用
-- 收纳
+- cutlery
+- utensil
+- utensils
+- food container
+- lunch box
+- dish rack
+- chopping board
+- frying pan
+- saucepan
 - 厨房用品
+- 厨具
 - 餐厨
-- 床品
+- 餐具
+- 炊具
+- 锅具
+- 烘焙工具
+- 保鲜盒
+- 砧板
 
-### home-appliance
+### computers
+
+- computer
+- computers
+- pc
+- desktop
+- laptop
+- notebook computer
+- monitor
+- keyboard
+- mouse
+- printer
+- docking station
+- webcam
+- hard drive
+- computer accessory
+- 电脑
+- 笔记本电脑
+- 台式机
+- 显示器
+- 键盘
+- 鼠标
+- 打印机
+- 扩展坞
+
+### home-textiles
+
+- home textile
+- bedding
+- bed sheet
+- fitted sheet
+- duvet cover
+- quilt cover
+- pillowcase
+- blanket
+- throw
+- curtain
+- rug
+- cushion cover
+- 家纺
+- 家纺布艺
+- 床品
+- 四件套
+- 被套
+- 枕套
+- 毛毯
+- 窗帘
+- 地毯
+- 靠垫套
+
+### home-decor-festive
+
+- home decor
+- decoration
+- decorative item
+- ornament
+- wall decor
+- vase
+- photo frame
+- candle holder
+- party decor
+- balloon garland
+- holiday decor
+- seasonal decor
+- birthday decor
+- 家居装饰
+- 装饰摆件
+- 墙饰
+- 节庆装饰
+- 派对布置
+- 节日装饰
+- 气球布置
+- 香薰摆件
+
+### home-appliances
 
 - appliance
 - appliances
-- small appliance
 - home appliance
 - kitchen appliance
+- small appliance
 - air fryer
 - blender
 - mixer
 - juicer
 - coffee machine
-- espresso machine
 - kettle
 - vacuum
 - robot vacuum
@@ -237,426 +223,301 @@
 - heater
 - humidifier
 - purifier
-- steam cleaner
-- garment steamer
-- iron
-- electric cooker
 - 电器
 - 家电
+- 家用电器
 - 小家电
 - 厨电
 - 空气炸锅
-- 料理机
+- 咖啡机
 - 吸尘器
-- 净化器
-- 电热水壶
 
-### consumer-electronics
+### home-improvement-materials
 
-- tech
-- gadget
-- electronics
-- electronic
-- digital
-- 3c
-- phone accessory
-- mobile accessory
-- charger
-- charging
-- charging cable
-- power bank
-- usb device
-- usb c
-- earbud
-- earbuds
-- headphone
-- headphones
-- speaker
-- microphone
-- ring light
-- tripod
-- camera accessory
-- keyboard
-- mouse
-- smartwatch
-- smart watch
-- tablet accessory
-- gaming accessory
-- 数码
-- 电子产品
-- 手机配件
-- 充电宝
-- 耳机
-- 键盘
-- 鼠标
-- 麦克风
+- building material
+- renovation material
+- home improvement
+- wall panel
+- wallpaper
+- tile
+- flooring
+- faucet
+- shower head
+- sink accessory
+- pipe fitting
+- sealant
+- adhesive
+- cabinet handle
+- door handle
+- curtain track
+- 建材
+- 家装建材
+- 墙板
+- 墙纸
+- 瓷砖
+- 地板
+- 水龙头
+- 花洒
+- 管件
+- 密封胶
+- 拉手
 
-### sports-outdoor
+### household-daily
 
-- sport
-- sports
-- outdoor
-- outdoor gear
-- fitness
-- workout
-- gym
-- yoga
-- pilates
-- running
-- jogging
-- cycling
-- hiking
-- camping
-- trekking
-- fishing
-- yoga mat
-- resistance band
-- dumbbell
-- sports bottle
-- 运动
-- 户外
-- 健身
-- 瑜伽
-- 跑步
-- 骑行
-- 露营
-- 徒步
-- 钓鱼
+- household
+- household goods
+- daily use
+- home organizer
+- storage organizer
+- hanger
+- tissue
+- paper towel
+- trash bag
+- laundry
+- cleaning supplies
+- bathroom accessory
+- mop
+- 居家日用
+- 日用品
+- 家居日用
+- 家清
+- 清洁用品
+- 收纳用品
+- 衣架
+- 纸巾
+- 垃圾袋
 
-### automotive-accessories
+### beauty-personal-care
 
-- automotive
-- auto
-- vehicle
-- car accessory
-- car accessories
-- car organizer
-- car charger
-- car mount
-- dashboard mount
-- dash cam
-- seat cushion
-- steering wheel cover
-- car sunshade
-- floor mat
-- seat gap filler
-- car vacuum
-- 车品
-- 汽车用品
-- 汽车配件
-- 车载
-- 车内
-- 车充
-- 车载支架
-- 行车记录仪
+- beauty
+- skincare
+- makeup
+- cosmetic
+- cosmetics
+- serum
+- cleanser
+- moisturizer
+- sunscreen
+- lipstick
+- body care
+- hair care
+- shampoo
+- conditioner
+- oral care
+- deodorant
+- perfume
+- 美妆
+- 个护
+- 美妆个护
+- 护肤
+- 彩妆
+- 洗护
+- 口腔护理
+- 身体护理
+- 洗发护发
 
-### office-school
+### mother-baby
 
-- office
-- office supply
-- office supplies
-- school supply
-- school supplies
-- stationery
-- notebook
-- planner
-- pen
-- pencil case
-- highlighter
-- binder
-- desk organizer
-- study desk
-- study lamp
-- whiteboard
-- 办公
-- 学习
-- 文具
-- 学生用品
-- 办公用品
-- 桌面办公
-- 笔记本
-
-### toys-games
-
-- toy
-- toys
-- game
-- games
-- board game
-- puzzle
-- building blocks
-- blocks
-- rc toy
-- doll
-- figurine
-- educational toy
-- sensory toy
-- collectible toy
-- 玩具
-- 游戏
-- 益智玩具
-- 拼图
-- 积木
-- 桌游
-- 遥控玩具
-
-### food-beverage
-
-- food
-- snack
-- snacks
-- beverage
-- drink
-- tea
-- coffee
-- edible
-- juice
-- soda
-- sparkling water
-- sauce
-- seasoning
-- ready to eat
-- 食品
-- 饮料
-- 零食
-- 冲饮
-
-### health-wellness
-
-- supplement
-- supplements
-- vitamin
-- vitamins
-- probiotic
-- probiotics
-- fish oil
-- omega 3
-- collagen
-- protein powder
-- electrolyte
-- wellness
-- gummy vitamin
-- nutrition support
-- immunity support
-- digestion support
-- sleep support
-- joint support
-- 保健品
-- 膳食补充剂
-- 营养补充
-- 维生素
-- 益生菌
-- 鱼油
-- 胶原蛋白
-- 蛋白粉
-- 电解质
-
-### mom-baby
-
-- mom baby
+- mother and baby
 - maternity
 - baby
 - infant
-- newborn
 - toddler
-- kids
-- baby feeding
-- diaper
-- baby bottle
-- bottle
-- pacifier
-- stroller
-- high chair
-- breast pump
-- baby carrier
-- bib
-- swaddle
 - nursing
-- maternal
+- feeding
+- stroller
+- bottle
+- breast pump
+- diaper
+- baby care
 - 母婴
-- 婴儿
-- 宝宝
-- 新生儿
-- 婴童
-- 孕产
+- 母婴用品
+- 婴儿用品
+- 宝宝用品
 - 喂养
+- 哺乳
+- 奶瓶
+- 纸尿裤
+- 推车
 - 辅食
 
-### pet
+### automotive-motorcycle
 
-- pet
-- pets
-- dog
-- cat
-- puppy
-- kitten
-- pet food
-- feeder
-- litter
-- litter box
-- pet toy
-- leash
-- collar
-- harness
-- grooming
-- scratching post
-- pet bed
-- 宠物
-- 猫
-- 狗
-- 宠粮
-- 猫砂
-- 逗猫
-- 狗绳
+- automotive
+- auto accessory
+- car accessory
+- car care
+- vehicle accessory
+- motorcycle
+- motorbike
+- motorcycle accessory
+- helmet
+- dash cam
+- car mount
+- 汽车用品
+- 汽车配件
+- 车载
+- 汽车与摩托车
+- 摩托车
+- 摩托车配件
+- 头盔
+- 行车记录仪
+- 车载支架
 
-### holiday-party
+### phones-digital
 
-- holiday
-- seasonal
-- christmas
-- halloween
-- valentine
-- valentines
-- easter
-- thanksgiving
-- party
-- party supplies
-- party decor
-- balloons
-- banner
-- wrapping
-- festive decor
-- 节庆
-- 节日
-- 派对
-- 派对用品
-- 节日装饰
-- 气球
-- 圣诞
-- 万圣节
-- 情人节
+- phone accessory
+- mobile accessory
+- phone case
+- charger
+- cable
+- power bank
+- earbuds
+- speaker
+- tablet accessory
+- camera accessory
+- tripod
+- gimbal
+- microphone
+- smartwatch
+- 手机与数码
+- 手机配件
+- 数码
+- 充电器
+- 充电宝
+- 耳机
+- 音箱
+- 摄影配件
+- 云台
+- 麦克风
+
+### toys-hobbies
+
+- toy
+- toys
+- hobby
+- hobby kit
+- collectible
+- model kit
+- puzzle
+- board game
+- building blocks
+- rc car
+- action figure
+- blind box
+- diy craft kit
+- 玩具
+- 爱好
+- 玩具与爱好
+- 潮玩
+- 模型
+- 积木
+- 拼图
+- 桌游
+- 盲盒
+- 手作套装
 
 ### tools-hardware
 
-- tool
 - tools
-- hardware
-- diy
-- repair tool
-- home improvement
-- drill
-- electric drill
+- tool set
+- toolbox
+- power tool
 - screwdriver
 - wrench
-- pliers
+- drill
+- plier
+- hammer
 - measuring tape
-- utility knife
-- socket set
+- screw kit
+- 五金工具
 - 工具
-- 五金
-- 维修工具
-- 家装
-- DIY
+- 工具箱
 - 电钻
 - 螺丝刀
 - 扳手
+- 钳子
+- 锤子
+- 卷尺
+- 螺丝套装
 
-### luggage-travel
+### sports-outdoor
 
-- luggage
-- suitcase
-- carry on
-- carry-on
-- travel
-- travel bag
-- travel organizer
-- packing cube
-- packing cubes
-- passport holder
-- luggage tag
-- toiletry bag
-- neck pillow
-- weekender
-- 行李
-- 行李箱
-- 旅行
-- 出行
-- 旅行收纳
-- 护照夹
-- 登机箱
-- 洗漱包
+- sports
+- outdoor
+- fitness
+- gym gear
+- yoga
+- running
+- training gear
+- camping
+- hiking
+- trekking
+- fishing
+- cycling
+- 运动和户外
+- 运动户外
+- 健身
+- 瑜伽
+- 跑步
+- 露营
+- 徒步
+- 户外装备
+- 训练器材
 
-## 5）冲突消解
+## 5）边界/歧义规则
 
-- 如果 `category_raw` 同时出现美妆和清洁相关词：
-  - 若出现护肤/彩妆词，优先选 `beauty-skincare`；
-  - 否则选 `personal-care-cleaning`。
-- 如果同时出现服饰词和珠宝/手表词：
-  - 若主体是戒指、项链、耳饰、手链、腕表，选 `jewelry-watches`；
-  - 若主体是服装、鞋靴、箱包，选 `fashion-accessories`。
-- 如果同时出现运动词和服饰词：
-  - 若重点是器械、户外装备、运动场景，选 `sports-outdoor`；
-  - 若重点是穿搭与版型，选 `fashion-accessories`。
-- 如果同时出现家电词和数码词：
-  - 若是围绕“完成家务/烹饪/空气/清洁任务”的电器，选 `home-appliance`；
-  - 若是围绕“手机、桌面、音频、充电、拍摄、连接”的设备或配件，选 `consumer-electronics`。
-- 如果同时出现汽车词和数码词：
-  - 若产品主要安装或使用在车内，选 `automotive-accessories`；
-  - 否则选 `consumer-electronics`。
-- 如果同时出现办公词和玩具词：
-  - 若重点是学习、书写、桌面效率，选 `office-school`；
-  - 若重点是娱乐、拼搭、互动游戏，选 `toys-games`。
-- 如果同时出现食品词和保健词：
-  - 若重点是口味、零食、饮用体验，选 `food-beverage`；
-  - 若重点是营养补充、日常保养、功能支持，选 `health-wellness`。
-- 如果同时出现母婴词和玩具词：
-  - 若主要服务婴儿/幼儿喂养、护理、出行、睡眠，选 `mom-baby`；
-  - 若主要是玩耍、拼搭、互动，选 `toys-games`。
-- 如果同时出现母婴词和个护词：
-  - 若产品主要服务婴儿/儿童/孕产人群，选 `mom-baby`；
-  - 否则选 `personal-care-cleaning`。
-- 如果同时出现家居词和家电词：
-  - 若需要通电、充电或电机驱动，优先选 `home-appliance`；
-  - 否则选 `home-daily`。
-- 如果同时出现家居词和工具词：
-  - 若重点是修理、安装、施工，选 `tools-hardware`；
-  - 否则选 `home-daily`。
-- 如果同时出现箱包词和旅行词：
-  - 若重点是旅行收纳、登机、出差、打包，选 `luggage-travel`；
-  - 若重点是日常搭配和造型，选 `fashion-accessories`。
-- 如果同时出现节庆词和其他产品词：
-  - 若重点是节日氛围、派对布置、礼赠场景，选 `holiday-party`；
-  - 若重点仍然是商品本身的常态使用价值，优先选对应商品类目，不因“礼盒”“送礼”字样强行改类。
-- 如果同时出现食品词和家电词：
-  - 若出现烹饪设备词（如 air fryer、blender、kettle），选 `home-appliance`；
-  - 若出现可食用单品词，选 `food-beverage`。
-- 若置信度依旧不清晰，选 `generic`，并在结果中附带兜底说明。
+- `beauty-personal-care` vs `household-daily`
+  - 护肤、彩妆、洗护、身体护理、口腔护理归 `beauty-personal-care`。
+  - 家居清洁、纸品、垃圾袋、洗衣与收纳清洁耗材归 `household-daily`。
+- `phones-digital` vs `computers`
+  - 手机、平板、音频、充电、拍摄、便携数码配件归 `phones-digital`。
+  - 笔记本、台式机、显示器、键鼠、打印与桌面计算场景归 `computers`。
+- `home-appliances` vs `kitchenware`
+  - 通电、充电、电机驱动或核心价值来自机器工作流程的，归 `home-appliances`。
+  - 非电动锅具、餐具、刀具、备餐与收纳器皿归 `kitchenware`。
+- `tools-hardware` vs `home-improvement-materials`
+  - 重点是拧、钻、量、装、切等“执行任务的工具”时归 `tools-hardware`。
+  - 重点是墙面、地面、水路、五金件、装饰面材、安装辅材时归 `home-improvement-materials`。
+- `home-decor-festive` vs `home-textiles` vs `household-daily`
+  - 装饰、氛围、摆件、节庆布置归 `home-decor-festive`。
+  - 床品、窗帘、毯类、布艺软装归 `home-textiles`。
+  - 收纳、清洁、纸品、通用日用品归 `household-daily`。
+- `toys-hobbies` vs `mother-baby`
+  - 核心价值是玩、拼、收集、互动、兴趣养成，归 `toys-hobbies`。
+  - 核心价值是喂养、护理、出行、安抚、阶段适配，归 `mother-baby`。
+- `automotive-motorcycle` vs `phones-digital`
+  - 产品主要安装、固定、使用在车内或摩托车场景中，归 `automotive-motorcycle`。
+  - 若只是普通手机数码配件且不绑定车/摩托场景，归 `phones-digital`。
 
-## 6）输出字段
+## 6）未覆盖旧类目处理
 
-归一化后需要产出：
+以下旧域不再作为本轮标准一级类目维护：
 
-- `category_normalized`
-- `strategy_file`
+- 服饰鞋包
+- 珠宝手表
+- 食品饮料
+- 保健滋补
+- 箱包出行
 
-`strategy_file` 映射：
+若用户显式给出这些类目，默认走 `generic`，除非商品描述同时明确命中当前 16 类之一。
 
-- `beauty-skincare` -> `references/strategy-beauty-skincare.md`
-- `fashion-accessories` -> `references/strategy-fashion-accessories.md`
-- `jewelry-watches` -> `references/strategy-jewelry-watches.md`
-- `personal-care-cleaning` -> `references/strategy-personal-care-cleaning.md`
-- `home-daily` -> `references/strategy-home-daily.md`
-- `home-appliance` -> `references/strategy-home-appliance.md`
-- `consumer-electronics` -> `references/strategy-consumer-electronics.md`
-- `sports-outdoor` -> `references/strategy-sports-outdoor.md`
-- `automotive-accessories` -> `references/strategy-automotive-accessories.md`
-- `office-school` -> `references/strategy-office-school.md`
-- `toys-games` -> `references/strategy-toys-games.md`
-- `food-beverage` -> `references/strategy-food-beverage.md`
-- `health-wellness` -> `references/strategy-health-wellness.md`
-- `mom-baby` -> `references/strategy-mom-baby.md`
-- `pet` -> `references/strategy-pet.md`
-- `holiday-party` -> `references/strategy-holiday-party.md`
+## 7）策略文件映射
+
+- `office-stationery` -> `references/strategy-office-stationery.md`
+- `pet-supplies` -> `references/strategy-pet-supplies.md`
+- `kitchenware` -> `references/strategy-kitchenware.md`
+- `computers` -> `references/strategy-computers.md`
+- `home-textiles` -> `references/strategy-home-textiles.md`
+- `home-decor-festive` -> `references/strategy-home-decor-festive.md`
+- `home-appliances` -> `references/strategy-home-appliances.md`
+- `home-improvement-materials` -> `references/strategy-home-improvement-materials.md`
+- `household-daily` -> `references/strategy-household-daily.md`
+- `beauty-personal-care` -> `references/strategy-beauty-personal-care.md`
+- `mother-baby` -> `references/strategy-mother-baby.md`
+- `automotive-motorcycle` -> `references/strategy-automotive-motorcycle.md`
+- `phones-digital` -> `references/strategy-phones-digital.md`
+- `toys-hobbies` -> `references/strategy-toys-hobbies.md`
 - `tools-hardware` -> `references/strategy-tools-hardware.md`
-- `luggage-travel` -> `references/strategy-luggage-travel.md`
+- `sports-outdoor` -> `references/strategy-sports-outdoor.md`
 - `generic` -> `references/strategy-generic.md`

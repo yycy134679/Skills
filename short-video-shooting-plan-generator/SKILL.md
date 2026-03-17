@@ -27,26 +27,24 @@ description: 根据商品名称与一级类目生成 TikTok Shop 带货短视频
 
 ## 覆盖类目
 
-仅按一级类目处理，优先覆盖最常见、最能覆盖大多数带货场景的 18 类：
+仅按一级类目处理，优先覆盖当前部门负责的 16 类：
 
-- `beauty-skincare`
-- `fashion-accessories`
-- `jewelry-watches`
-- `personal-care-cleaning`
-- `home-daily`
-- `home-appliance`
-- `consumer-electronics`
-- `sports-outdoor`
-- `automotive-accessories`
-- `office-school`
-- `toys-games`
-- `food-beverage`
-- `health-wellness`
-- `mom-baby`
-- `pet`
-- `holiday-party`
+- `office-stationery`
+- `pet-supplies`
+- `kitchenware`
+- `computers`
+- `home-textiles`
+- `home-decor-festive`
+- `home-appliances`
+- `home-improvement-materials`
+- `household-daily`
+- `beauty-personal-care`
+- `mother-baby`
+- `automotive-motorcycle`
+- `phones-digital`
+- `toys-hobbies`
 - `tools-hardware`
-- `luggage-travel`
+- `sports-outdoor`
 - 未知类目统一走 `generic`
 
 ## 输入与默认值
@@ -146,11 +144,11 @@ description: 根据商品名称与一级类目生成 TikTok Shop 带货短视频
 
 **示例 1**  
 输入：`Product: Niacinamide Brightening Serum; Category: skincare`  
-输出：中文 TikTok Shop 分镜方案，命中 `beauty-skincare`，包含目标人群、核心痛点、主打证据、2 个 Hook、6-8 镜头表格、软性转化、合规说明，以及放在最后的 1 条 Seedance 视频生成提示词；达人口播列为中英双语上下两行。
+输出：中文 TikTok Shop 分镜方案，命中 `beauty-personal-care`，包含目标人群、核心痛点、主打证据、2 个 Hook、6-8 镜头表格、软性转化、合规说明，以及放在最后的 1 条 Seedance 视频生成提示词；达人口播列为中英双语上下两行。
 
 **示例 2**  
 输入：`Product: Cat Water Fountain; Category: pet`  
-输出：命中 `pet` 类目并给出宠物反应与主人省心双重证据的拍摄方案，同时在最后追加 1 条宠物场景的 Seedance prompt。若输入为无法识别的一般用品，则命中兜底策略并附加：`因未匹配到具体类目，已使用通用兜底策略。`
+输出：命中 `pet-supplies` 类目并给出宠物反应与主人省心双重证据的拍摄方案，同时在最后追加 1 条宠物场景的 Seedance prompt。若输入为无法识别的一般用品，则命中兜底策略并附加：`因未匹配到具体类目，已使用通用兜底策略。`
 
 ## 输出结构（必须完整）
 
