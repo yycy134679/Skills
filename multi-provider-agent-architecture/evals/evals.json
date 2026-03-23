@@ -1,0 +1,23 @@
+{
+  "skill_name": "multi-provider-agent-architecture",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我要同时接 OpenAI、Gemini、方舟做 agent，应该统一 chat API 吗？",
+      "expected_output": "明确反对把所有厂商统一成一份原始请求体，给出统一语义层加多适配器的建议，并说明简单场景下统一 chat-like 抽象仍然可行。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我们现在只有 OpenAI Chat Completions，后面要接 Gemini 和方舟，接口层怎么设计？",
+      "expected_output": "给出迁移路径，推荐 Agent Core、Canonical IR、Provider Adapter、Capability Registry 分层，并区分 OpenAI、Gemini、方舟的推荐 API 路径。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "多模型 agent 是否需要 capability registry，还是只做 model router 就够了？",
+      "expected_output": "说明简单路由与能力注册表的差异，解释为什么复杂 agent 需要 capability registry，而不仅仅是按成本或模型名路由。",
+      "files": []
+    }
+  ]
+}
