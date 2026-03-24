@@ -465,7 +465,231 @@
 - 户外装备
 - 训练器材
 
-## 5）边界/歧义规则
+## 5）宠物用品二级差异层
+
+仅当 `category_normalized=pet-supplies` 时，才继续判断二级差异层。
+
+判断顺序：
+
+1. 若用户显式给出二级类目字段或截图中的标准二级类目，优先使用。
+2. 若 `category_raw` 已经足够具体，可直接用来命中宠物二级。
+3. 若只有商品名和自然语言描述，则只在高置信时推断。
+4. 若命中多个二级或置信度不足，返回空值，不强行猜测。
+
+返回字段：
+
+- `subcategory_normalized`
+- `subcategory_label`
+- `subcategory_file`
+
+### livestock-poultry / 家畜及家禽用品
+
+- livestock
+- poultry
+- farm animal
+- chicken coop
+- hen feeder
+- livestock care
+- 家畜
+- 家禽
+- 鸡鸭鹅
+- 养殖用品
+- 畜牧用品
+
+### cat-dog-health / 猫狗保健
+
+- pet health
+- dog health
+- cat health
+- supplement
+- probiotic
+- vitamin
+- dewormer
+- calming aid
+- dental care
+- joint support
+- 猫狗保健
+- 宠物保健
+- 营养膏
+- 宠物维生素
+- 益生菌
+- 驱虫
+- 洁牙
+- 关节养护
+
+### cat-dog-apparel / 猫狗宠物装
+
+- pet apparel
+- pet clothes
+- dog clothes
+- cat clothes
+- pet costume
+- pet sweater
+- raincoat
+- bandana
+- 宠物装
+- 宠物衣服
+- 宠物服饰
+- 狗狗衣服
+- 猫咪衣服
+- 宠物毛衣
+- 宠物雨衣
+
+### cat-dog-furniture / 猫狗家具
+
+- pet furniture
+- pet bed
+- cat tree
+- scratch post
+- scratching tree
+- pet house
+- pet sofa
+- pet stairs
+- 猫狗家具
+- 宠物家具
+- 猫爬架
+- 宠物窝
+- 宠物床
+- 宠物楼梯
+- 宠物沙发
+
+### cat-dog-grooming / 猫狗美容用具
+
+- grooming
+- pet grooming
+- brush
+- slicker brush
+- nail clipper
+- clipper
+- grooming kit
+- pet shampoo
+- deshedding
+- 猫狗美容
+- 宠物美容
+- 宠物梳子
+- 指甲剪
+- 剃毛器
+- 洗护工具
+- 开结梳
+
+### cat-dog-litter / 猫狗如厕用品
+
+- litter
+- cat litter
+- litter box
+- pee pad
+- training pad
+- poop bag
+- poop scoop
+- deodorizer
+- 猫狗如厕
+- 宠物如厕
+- 猫砂
+- 猫砂盆
+- 尿垫
+- 拾便袋
+- 除臭
+- 铲屎
+
+### cat-dog-accessories / 猫狗用品配件
+
+- pet accessory
+- collar
+- leash
+- harness
+- bowl
+- feeder
+- water fountain
+- tag
+- carrier
+- travel bag
+- toy
+- chewer
+- 猫狗配件
+- 宠物配件
+- 项圈
+- 牵引绳
+- 胸背
+- 食盆
+- 喂食器
+- 饮水机
+- 宠物包
+- 宠物玩具
+
+### birds / 鸟类用品
+
+- bird
+- birds
+- bird cage
+- perch
+- bird feeder
+- parrot toy
+- 鸟类用品
+- 鸟用品
+- 鸟笼
+- 站杆
+- 鹦鹉玩具
+
+### reptiles-amphibians / 爬行动物及两栖动物用品
+
+- reptile
+- amphibian
+- terrarium
+- heat lamp
+- reptile tank
+- basking
+- 爬宠
+- 爬行动物
+- 两栖动物
+- 守宫
+- 蜥蜴
+- 龟
+- 蛙
+- 饲养箱
+- 加热灯
+
+### small-pets / 小宠用品
+
+- small pet
+- hamster
+- rabbit
+- guinea pig
+- chinchilla
+- ferret
+- 小宠
+- 仓鼠
+- 兔子
+- 豚鼠
+- 龙猫
+- 雪貂
+
+### aquatics / 鱼类及水产用品
+
+- fish
+- aquarium
+- aquatic
+- fish tank
+- filter
+- air pump
+- water pump
+- pond
+- 鱼类用品
+- 水产用品
+- 水族
+- 鱼缸
+- 过滤器
+- 氧气泵
+- 水泵
+
+宠物二级的补充边界规则：
+
+- 若主体是猫狗常规用品，且没有命中保健、宠物装、家具、美容、如厕中的任一高置信方向，默认归 `cat-dog-accessories`。
+- 若主体是猫爬架、宠物窝、宠物床、抓板、宠物楼梯，优先归 `cat-dog-furniture`，不要落到 `cat-dog-accessories`。
+- 若主体是猫砂、尿垫、拾便袋、猫砂盆、除臭清洁类如厕产品，优先归 `cat-dog-litter`。
+- 若主体是营养补充、洁牙、驱虫、情绪舒缓、关节养护等，优先归 `cat-dog-health`。
+- 若主体明确服务鸟类、鱼类水族、爬宠或小宠，不要再落到猫狗二级。
+
+## 6）边界/歧义规则
 
 - `beauty-personal-care` vs `household-daily`
   - 护肤、彩妆、洗护、身体护理、口腔护理归 `beauty-personal-care`。
@@ -490,7 +714,7 @@
   - 产品主要安装、固定、使用在车内或摩托车场景中，归 `automotive-motorcycle`。
   - 若只是普通手机数码配件且不绑定车/摩托场景，归 `phones-digital`。
 
-## 6）未覆盖旧类目处理
+## 7）未覆盖旧类目处理
 
 以下旧域不再作为本轮标准一级类目维护：
 
@@ -502,7 +726,7 @@
 
 若用户显式给出这些类目，默认走 `generic`，除非商品描述同时明确命中当前 16 类之一。
 
-## 7）策略文件映射
+## 8）策略文件映射
 
 - `office-stationery` -> `references/strategy-office-stationery.md`
 - `pet-supplies` -> `references/strategy-pet-supplies.md`
@@ -521,3 +745,17 @@
 - `tools-hardware` -> `references/strategy-tools-hardware.md`
 - `sports-outdoor` -> `references/strategy-sports-outdoor.md`
 - `generic` -> `references/strategy-generic.md`
+
+### pet-supplies 二级差异文件映射
+
+- `livestock-poultry` (`家畜及家禽用品`) -> `references/pet-supplies/livestock-poultry.md`
+- `cat-dog-health` (`猫狗保健`) -> `references/pet-supplies/cat-dog-health.md`
+- `cat-dog-apparel` (`猫狗宠物装`) -> `references/pet-supplies/cat-dog-apparel.md`
+- `cat-dog-furniture` (`猫狗家具`) -> `references/pet-supplies/cat-dog-furniture.md`
+- `cat-dog-grooming` (`猫狗美容用具`) -> `references/pet-supplies/cat-dog-grooming.md`
+- `cat-dog-litter` (`猫狗如厕用品`) -> `references/pet-supplies/cat-dog-litter.md`
+- `cat-dog-accessories` (`猫狗用品配件`) -> `references/pet-supplies/cat-dog-accessories.md`
+- `birds` (`鸟类用品`) -> `references/pet-supplies/birds.md`
+- `reptiles-amphibians` (`爬行动物及两栖动物用品`) -> `references/pet-supplies/reptiles-amphibians.md`
+- `small-pets` (`小宠用品`) -> `references/pet-supplies/small-pets.md`
+- `aquatics` (`鱼类及水产用品`) -> `references/pet-supplies/aquatics.md`

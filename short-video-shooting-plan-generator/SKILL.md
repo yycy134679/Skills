@@ -52,6 +52,7 @@ description: 根据商品名称与一级类目生成 TikTok Shop 带货短视频
 - 提取输入：
   - `product_name: string`
   - `category_raw: string`
+  - 若用户给出，也尽量提取：`category_secondary_raw`
   - 若用户给出，也尽量提取：`target_user`、`price_band`、`key_selling_points`、`usage_scene`、`content_constraints`
   - 若用户给出，也尽量提取：`product_image_reference`、`product_visual_details`
 - 提取优先级：
@@ -75,9 +76,12 @@ description: 根据商品名称与一级类目生成 TikTok Shop 带货短视频
 按以下顺序读取并只加载必要文件：
 1. 读取 `references/taxonomy.md`，将 `category_raw` 归一化为标准类目。
 2. 根据标准类目读取对应 `references/strategy-*.md`。
-3. 若无法命中任何类目，改读 `references/strategy-generic.md`。
-4. 最后读取 `references/compliance.md`，执行风险表达替换与提示。
-5. 生成最终结果前，读取 `references/seedance-video-prompt.md`，生成独立的 Seedance 视频生成提示词。
+3. 若 `category_normalized=pet-supplies` 且命中二级类目，再追加读取 `references/pet-supplies/<subcategory_normalized>.md` 作为差异层。
+4. 若无法命中任何类目，改读 `references/strategy-generic.md`。
+5. 最后读取 `references/compliance.md`，执行风险表达替换与提示。
+6. 生成最终结果前，读取 `references/seedance-video-prompt.md`，生成独立的 Seedance 视频生成提示词。
+
+二级差异层只负责补充或覆盖一级宠物策略里的差异点，不要把整套一级逻辑复制一遍。若宠物二级无法稳定命中，则只使用一级宠物策略，不要强行猜测。
 
 ## 核心脚本原则
 
@@ -99,7 +103,10 @@ description: 根据商品名称与一级类目生成 TikTok Shop 带货短视频
 2. 归一化类目，生成：
    - `category_normalized`
    - `strategy_file`
-3. 从策略文件提取：
+   - `subcategory_normalized`（仅 `pet-supplies` 时可选）
+   - `subcategory_label`（仅 `pet-supplies` 时可选）
+   - `subcategory_file`（仅 `pet-supplies` 时可选）
+3. 从一级策略文件与可选二级差异文件提取：
    - `类目任务`
    - `曝光优先切入`
    - `转化优先证据`
@@ -111,6 +118,7 @@ description: 根据商品名称与一级类目生成 TikTok Shop 带货短视频
    - `软性 CTA 模式`
    - `建议 / 避免`
    - `类目专属合规提醒`
+   - 若一级与二级差异层存在同名条目，优先采用二级差异层；一级未覆盖的部分继续沿用一级策略。
 4. 基于商品和类目，先确定本条视频的：
    - 目标人群
    - 核心痛点
@@ -147,8 +155,8 @@ description: 根据商品名称与一级类目生成 TikTok Shop 带货短视频
 输出：中文 TikTok Shop 分镜方案，命中 `beauty-personal-care`，包含目标人群、核心痛点、主打证据、2 个 Hook、6-8 镜头表格、软性转化、合规说明，以及放在最后的 1 条 Seedance 视频生成提示词；达人口播列为中英双语上下两行。
 
 **示例 2**  
-输入：`Product: Cat Water Fountain; Category: pet`  
-输出：命中 `pet-supplies` 类目并给出宠物反应与主人省心双重证据的拍摄方案，同时在最后追加 1 条宠物场景的 Seedance prompt。若输入为无法识别的一般用品，则命中兜底策略并附加：`因未匹配到具体类目，已使用通用兜底策略。`
+输入：`Product: Cat Litter Box; Category: cat litter`
+输出：命中 `pet-supplies` 类目，并进一步命中宠物二级差异层 `猫狗如厕用品`；方案应突出清洁流程、异味顾虑、猫咪接受度与主人维护成本，同时在最后追加 1 条宠物场景的 Seedance prompt。若输入为无法识别的一般用品，则命中兜底策略并附加：`因未匹配到具体类目，已使用通用兜底策略。`
 
 ## 输出结构（必须完整）
 
@@ -199,6 +207,7 @@ description: 根据商品名称与一级类目生成 TikTok Shop 带货短视频
 - 产品
 - 类目（原始）
 - 类目（归一化）
+- 类目（二级）（仅 `pet-supplies` 命中时输出）
 - 目标人群
 - 核心痛点
 - 主打卖点
@@ -230,6 +239,7 @@ description: 根据商品名称与一级类目生成 TikTok Shop 带货短视频
 - Seedance prompt 必须与达人脚本逻辑分离，不能把分镜表逐行翻译成 7 个 Shot。
 - 若没有商品图，也必须输出 Seedance prompt，且不能向用户索图、不能省略该模块、不能输出“无法保证外观一致性”。
 - 无图场景下的商品描述必须保守，不能虚构精确颜色、配件、隐藏结构或包装细节。
+- 若 `pet-supplies` 命中二级差异层，Hook、证据镜头、异议回应与 CTA 必须体现该二级方向，而不是退化成泛宠物模板。
 
 ## 输出模板（按此骨架填充）
 
@@ -241,6 +251,7 @@ description: 根据商品名称与一级类目生成 TikTok Shop 带货短视频
 - 产品：<product_name>
 - 类目（原始）：<category_raw>
 - 类目（归一化）：<category_normalized>
+- 类目（二级）：<subcategory_label，仅 pet-supplies 命中时输出>
 - 目标人群：<最可能被打动的人群>
 - 核心痛点：<这条视频要解决的犹豫或需求>
 - 主打卖点：<本条视频重点只放 1-2 个卖点>
@@ -319,6 +330,7 @@ Shot 7（13-15s）
 
 生成前后都执行以下检查：
 1. 是否成功归一化类目；若失败是否切换到 `generic`。  
+1.1 若 `category_normalized=pet-supplies`，是否正确判断并应用了二级差异层；若不确定是否保持为空而非硬猜。
 2. 是否先明确了目标人群、核心痛点、主打卖点与主打证据。  
 3. 是否存在 2 个 Hook。  
 4. 是否严格为 6-8 个镜头。  
